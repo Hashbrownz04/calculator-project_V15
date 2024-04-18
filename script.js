@@ -143,6 +143,12 @@ for(let i = 0; i < btnAutres.length; i++){
                 screen.innerText = total;
             }
         }
+        if(clicked && btnAutres[0]){
+            const delValue = total.split("");
+            delValue.pop();
+            total = delValue.join("");
+            screen.innerText = total;
+        }
     })
 }
 console.log(num1)
