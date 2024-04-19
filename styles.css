@@ -1,3 +1,4 @@
+/*grid-layout appearance*/
 body{
     display: flex;
     justify-content: center;
@@ -113,6 +114,7 @@ button{
     border-radius: 4px;
 }
 
+/*text and color appearance*/
 .clear{
     background-color: #C80000;
     color: white;

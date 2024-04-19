@@ -44,7 +44,13 @@ for (let i = 0; i < numButtons.length; i++) {
     })
 }
 
-// miscValues(switching the signs & adding a decimal)
+// miscButtons(inverting the signs & adding a decimal)
+/* Now, I meant to create the other button elements in a way of how I've done them before
+-- a block of code where I assign values to elements, and another where I add their functions --
+But my teacher taught me about a function method called .forEach
+where I can assign each value to an element and make a event-listener function of that element
+in one sitting.
+*/
 let miscValues = ["+/-", "."]
 
 miscValues.forEach(value => {
@@ -73,7 +79,7 @@ miscValues.forEach(value => {
     })
 })
 
-// operators
+// operators(signs that make up the sum equation)
 let num1 = "";
 let num2 = "";
 let operator = "";
@@ -118,12 +124,16 @@ for (let i = 0; i < opButtons.length; i++) {
     })
 }*/
 
+/* After inputting the number of your choice, you click on an operator button so
+that number will saved as the first number value and that you can input another number for later.*/
 opValues.forEach(value => {
     const opButton = document.createElement("button");
     operators.appendChild(opButton);
     opButton.id = "operator";
     opButton.className = value;
     opButton.innerText = value;
+    //When you click on an addButton, the "operator" variable will get the "+" value and have it saved.
+    //This variable will be used later when we equal the sum.
     opButton.addEventListener("click", function () {
         num1 = total;
         total = "";
@@ -146,7 +156,7 @@ methodValues.forEach(value => {
     methodBtn.addEventListener("click", event => {
         switch (value) {
             case "abs":
-                let absValue0 = parseInt(total);
+                let absValue0 = parseFloat(total);
                 total = Math.abs(absValue0);
                 screen.innerText = total;
                 break;
@@ -157,22 +167,22 @@ methodValues.forEach(value => {
                 screen.innerText = '0';
                 break;
             case "round":
-                let roundValue0 = parseInt(total);
+                let roundValue0 = parseFloat(total);
                 total = Math.round(roundValue0);
                 screen.innerText = total;
                 break;
             case "ceil":
-                let ceilValue0 = parseInt(total);
+                let ceilValue0 = parseFloat(total);
                 total = Math.ceil(ceilValue0);
                 screen.innerText = total;
                 break;
             case "floor":
-                let floorValue0 = parseInt(total);
+                let floorValue0 = parseFloat(total);
                 total = Math.floor(floorValue0);
                 screen.innerText = total;
                 break;
             case "sqrt":
-                let sqrtValue0 = parseInt(total);
+                let sqrtValue0 = parseFloat(total);
                 total = Math.sqrt(sqrtValue0);
                 screen.innerText = total;
                 break;
@@ -181,7 +191,6 @@ methodValues.forEach(value => {
 })
 
 // assignment operators (calculating the sum in an instant manner)
-
 let assignValues = ["+=", "-=", "*=", "/=", "%="];
 
 assignValues.forEach(value => {
@@ -196,8 +205,8 @@ assignValues.forEach(value => {
         screen.innerText = "0";
         const timer = setInterval(myTotal, 4500);
         function myTotal() {
-            let numValue1 = parseInt(num1);
-            let numTotal = parseInt(total);
+            let numValue1 = parseFloat(num1);
+            let numTotal = parseFloat(total);
             switch(value){
                 case "+=":
                     total = numTotal+=numValue1;
@@ -266,10 +275,16 @@ delNenter.forEach(value => {
     btnAutre.innerText = value;
     btnAutre.addEventListener("click", (event) => {
         event.target.screen;
+        /*We have the first number value, now we have the second number value.
+        Now we can make the sum!*/
+        
+        /*When we check on the operator variable with its assigned value,
+        this will correspond to how we want to make the sum.
+        Do we add, multiply, subtract, divide? We want to know what!*/
         if (value === "=") {
             num2 = total;
-            let numValue1 = parseInt(num1);
-            let numValue2 = parseInt(num2);
+            let numValue1 = parseFloat(num1);
+            let numValue2 = parseFloat(num2);
             console.log(num1, num2, total);
             switch (operator) {
                 case "+":
