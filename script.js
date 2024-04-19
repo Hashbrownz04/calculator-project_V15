@@ -2,7 +2,7 @@
 /*These here are the buttons that are meant to be used to operate the Calculator*/
 const numPad = document.getElementById("numpad");
 const operators = document.getElementById("operators");
-const deleteNequal = document.getElementById("delete/equal");
+const deleteNequal = document.getElementById("deleteNequal");
 const clear = document.getElementById("CLEAR");
 const methods = document.getElementById("methods");
 const assignments = document.getElementById("assignments");
@@ -125,7 +125,7 @@ opValues.forEach(value => {
     opButton.className = value;
     opButton.innerText = value;
     opButton.addEventListener("click", function () {
-        num1num1 = total;
+        num1 = total;
         total = "";
         operator = value;
         screen.innerText = "0";
@@ -140,7 +140,7 @@ let power = "";
 methodValues.forEach(value => {
     const methodBtn = document.createElement("button");
     methods.appendChild(methodBtn);
-    methodBtn.id = "methods";
+    methodBtn.id = "method";
     methodBtn.className = value;
     methodBtn.innerText = value;
     methodBtn.addEventListener("click", event => {
@@ -154,7 +154,7 @@ methodValues.forEach(value => {
                 power = "power";
                 num1 = total;
                 total = "";
-                screen.innerText = total;
+                screen.innerText = '0';
                 break;
             case "round":
                 let roundValue0 = parseInt(total);
@@ -187,7 +187,7 @@ let assignValues = ["+=", "-=", "*=", "/=", "%="];
 assignValues.forEach(value => {
     const assignBtn = document.createElement("button");
     assignments.appendChild(assignBtn);
-    assignBtn.id = "assignments";
+    assignBtn.id = "assignment";
     assignBtn.className = value;
     assignBtn.innerText = value;
     assignBtn.addEventListener("click", (event) => {
@@ -234,7 +234,7 @@ let miscValues2 = ["rand", "++", "--"]
 miscValues2.forEach(value => {
     const extraBtn = document.createElement("button");
     extras.appendChild(extraBtn);
-    extraBtn.id = "extras";
+    extraBtn.id = "extra";
     extraBtn.className = value;
     extraBtn.innerText = value;
     extraBtn.addEventListener("click", (event) => {

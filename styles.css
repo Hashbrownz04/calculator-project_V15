@@ -5,25 +5,165 @@ body{
 }
 
 .container{
-    display: flex;
+    display: grid;
     background-color:black;
     width: 480px;
     height: 480px;
+    border-radius: 25px;
     justify-content: center;
     align-items: center;
+    gap: 4px;
 }
 
 #calculator{
-    display: flex;
-    background-color: darkgray;
+    display: grid;
+    background-color: #d9d9d9;
     width: 256px;
     height: 382px;
+    border: 18px solid #d9d9d9;
+    border-radius: 10px;
     justify-content: center;
     align-content: center;
+    grid-template-areas:
+        "screen screen screen"
+        "buttonsLeft numpad buttonsRight"
+        "footer footer foooter";
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
 }
 
 .screen{
-    display: flex;
+    grid-area: screen;
+    background-color: #40847c;
+    padding: 10px;
+    text-wrap: wrap;
+    font-family: 'ProFontWindows';
+    font-size: 24px;
+}
+
+#buttonsLeft{
+    grid-area: buttonsLeft;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 4px;
+}
+
+#CLEAR{
+    display: grid;
+}
+
+#methods{
+    display: grid;
+    gap: 4px;
+}
+
+#numpad{
+    grid-area: numpad;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+}
+
+#buttonsRight{
+    grid-area: buttonsRight;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 4px;
+}
+
+#operators{
+    display: grid;
+    gap: 4px;
+}
+
+#deleteNequal{
+    display: grid;
+    gap: 4px;
+}
+
+#footer{
+    grid-area: footer;
+    display: grid;
+    grid-template-areas: 
+    "extras"
+    "assignments";
+    grid-template-rows: 1fr 2fr;
+    gap: 4px;
+}
+
+#extras{
+    grid-area: extras;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+}
+
+#assignments{
+    grid-area: assignments;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+}
+
+button{
+    border-radius: 4px;
+}
+
+.clear{
+    background-color: #C80000;
+    color: white;
+    font-family: 'Bauhaus';
+}
+
+#method{
+    background-color: #b7ff6f;
+    color: black;
+    font-family: 'Bauhaus';
+}
+
+#numbers{
+    background-color: #8d8d8d; 
+    color: white;
+    font-family: 'Bauhaus';
+    font-size: 24px;
+}
+
+#misc{
+    background-color: #8d8d8d; 
+    color: white;
+    font-family: 'Bauhaus';
+}
+
+#operator{
+    background-color: #6ac1ff;
+    color: black;
+    font-family: 'Bauhaus';
+}
+
+.DELETE{
     background-color: white;
-    flex-direction: row;
+    color: #c80000;
+    font-family: 'Bauhaus';
+}
+
+.\={
+    background-color: #ffc839;
+    color: #c80000;
+    font-family: 'Bauhaus';
+}
+
+#extra{
+    background-color: #c1f4ff;
+    color: #0094ff;
+    font-family: 'Bauhaus';
+}
+
+#assignment{
+    background-color: #ffd978;
+    color: #0094ff;
+    font-family: 'Bauhaus';
 }
