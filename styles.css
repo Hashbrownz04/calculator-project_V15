@@ -1,0 +1,29 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    background-color:black;
+    width: 480px;
+    height: 480px;
+    justify-content: center;
+    align-items: center;
+}
+
+#calculator{
+    display: flex;
+    background-color: darkgray;
+    width: 256px;
+    height: 382px;
+    justify-content: center;
+    align-content: center;
+}
+
+.screen{
+    display: flex;
+    background-color: white;
+    flex-direction: row;
+}

@@ -6,11 +6,12 @@ const deleteNequal = document.getElementById("delete/equal");
 const clear = document.getElementById("CLEAR");
 const methods = document.getElementById("methods");
 const assignments = document.getElementById("assignments");
+const extras = document.getElementById("extras");
 
 /*This here is where you would see numbers, operators, equations, and everything.*/
 const screen = document.getElementById("screen");
 let total = "";
-screen.innerText = total;
+screen.innerText = "0";
 
 /*I've added every numPad button, each with its own IDname and number value.
 From how I did it, I created a function where for each cycle an individualised button element will be created
@@ -46,13 +47,31 @@ for (let i = 0; i < numButtons.length; i++) {
 // miscValues(switching the signs & adding a decimal)
 let miscValues = ["+/-", "."]
 
-for (let i = 0; i < miscValues.length; i++) {
+miscValues.forEach(value => {
     const miscButton = document.createElement("button");
     numPad.appendChild(miscButton);
     miscButton.id = "misc";
-    miscButton.className = `${miscValues[i]}`;
-    miscButton.innerText = `${miscValues[i]}`;
-}
+    miscButton.className = value;
+    miscButton.innerText = value;
+    miscButton.addEventListener("click", event => {
+        event.target.screen;
+        if(value === "."){
+            total += value;
+            screen.innerText = total;
+        }
+        else if(value === "+/-"){
+            if(total.includes("-")){
+                total = total.slice(1, total.length);
+                screen.innerText = total;
+            }
+            else if(!total.includes("-")){
+                let negative = "-";
+                total = negative.concat(total);
+                screen.innerText = total;
+            }
+        }
+    })
+})
 
 // operators
 let num1 = "";
@@ -61,7 +80,7 @@ let operator = "";
 
 let opValues = ["+", "-", "*", "/", "%"]
 
-for (let i = 0; i < opValues.length; i++) {
+/*for (let i = 0; i < opValues.length; i++) {
     const opButton = document.createElement("button");
     operators.appendChild(opButton);
     opButton.id = "operators";
@@ -97,61 +116,191 @@ for (let i = 0; i < opButtons.length; i++) {
             operator = opValues[4];
         }
     })
-}
+}*/
+
+opValues.forEach(value => {
+    const opButton = document.createElement("button");
+    operators.appendChild(opButton);
+    opButton.id = "operator";
+    opButton.className = value;
+    opButton.innerText = value;
+    opButton.addEventListener("click", function () {
+        num1num1 = total;
+        total = "";
+        operator = value;
+        screen.innerText = "0";
+    })
+})
+
+// methods (Math functions)
+let methodValues = ["abs", "pow", "round", "ceil", "floor", "sqrt"];
+
+let power = "";
+
+methodValues.forEach(value => {
+    const methodBtn = document.createElement("button");
+    methods.appendChild(methodBtn);
+    methodBtn.id = "methods";
+    methodBtn.className = value;
+    methodBtn.innerText = value;
+    methodBtn.addEventListener("click", event => {
+        switch (value) {
+            case "abs":
+                let absValue0 = parseInt(total);
+                total = Math.abs(absValue0);
+                screen.innerText = total;
+                break;
+            case "pow":
+                power = "power";
+                num1 = total;
+                total = "";
+                screen.innerText = total;
+                break;
+            case "round":
+                let roundValue0 = parseInt(total);
+                total = Math.round(roundValue0);
+                screen.innerText = total;
+                break;
+            case "ceil":
+                let ceilValue0 = parseInt(total);
+                total = Math.ceil(ceilValue0);
+                screen.innerText = total;
+                break;
+            case "floor":
+                let floorValue0 = parseInt(total);
+                total = Math.floor(floorValue0);
+                screen.innerText = total;
+                break;
+            case "sqrt":
+                let sqrtValue0 = parseInt(total);
+                total = Math.sqrt(sqrtValue0);
+                screen.innerText = total;
+                break;
+        }
+    })
+})
+
+// assignment operators (calculating the sum in an instant manner)
+
+let assignValues = ["+=", "-=", "*=", "/=", "%="];
+
+assignValues.forEach(value => {
+    const assignBtn = document.createElement("button");
+    assignments.appendChild(assignBtn);
+    assignBtn.id = "assignments";
+    assignBtn.className = value;
+    assignBtn.innerText = value;
+    assignBtn.addEventListener("click", (event) => {
+        num1 = total;
+        total = "";
+        screen.innerText = "0";
+        const timer = setInterval(myTotal, 4500);
+        function myTotal() {
+            let numValue1 = parseInt(num1);
+            let numTotal = parseInt(total);
+            switch(value){
+                case "+=":
+                    total = numTotal+=numValue1;
+                    screen.innerText = total;
+                    clearInterval(timer);
+                    break;
+                case "-=":
+                    total = numTotal-=numValue1;
+                    screen.innerText = total;
+                    clearInterval(timer);
+                    break;
+                case "*=":
+                    total = numTotal*=numValue1;
+                    screen.innerText = total;
+                    clearInterval(timer);
+                    break;
+                case "/=":
+                    total = numTotal/=numValue1;
+                    screen.innerText = total;
+                    clearInterval(timer);
+                    break;
+                case "%=":
+                    total = numTotal%=numValue1;
+                    screen.innerText = total;
+                    clearInterval(timer);
+                    break;
+            }
+        }
+    })
+})
+
+let miscValues2 = ["rand", "++", "--"]
+
+miscValues2.forEach(value => {
+    const extraBtn = document.createElement("button");
+    extras.appendChild(extraBtn);
+    extraBtn.id = "extras";
+    extraBtn.className = value;
+    extraBtn.innerText = value;
+    extraBtn.addEventListener("click", (event) => {
+        event.target.screen;
+        if(value === "rand"){
+            let randNum = Math.round(Math.random() * 9);
+            total += randNum;
+            screen.innerText = total;
+        }
+        else if(value === "++"){
+            total++;
+            screen.innerText = total;
+        }
+        else if(value === "--"){
+            total--;
+            screen.innerText = total;
+        }
+    })
+})
 
 // equal (calculating the total sum)
 let delNenter = ["DELETE", "="];
 
-for (let i = 0; i < delNenter.length; i++) {
+delNenter.forEach(value => {
     const btnAutre = document.createElement("button");
     deleteNequal.appendChild(btnAutre);
     btnAutre.id = `delNenter`;
-    btnAutre.className = `${delNenter[i]}`;
-    btnAutre.innerText = `${delNenter[i]}`;
-}
-
-console.log(document.querySelectorAll("#delNenter"));
-
-let btnAutres = document.querySelectorAll("#delNenter");
-
-for(let i = 0; i < btnAutres.length; i++){
-    btnAutres[i].addEventListener("click", (event) =>{
+    btnAutre.className = value;
+    btnAutre.innerText = value;
+    btnAutre.addEventListener("click", (event) => {
         event.target.screen;
-        if(clicked && btnAutres[1]){
+        if (value === "=") {
             num2 = total;
             let numValue1 = parseInt(num1);
             let numValue2 = parseInt(num2);
             console.log(num1, num2, total);
-            if(operator == opValues[0]){
-                total = numValue1 + numValue2;
-                screen.innerText = total;
+            switch (operator) {
+                case "+":
+                    total = numValue1 + numValue2;
+                    break;
+                case "-":
+                    total = numValue1 - numValue2;
+                    break;
+                case "*":
+                    total = numValue1 * numValue2;
+                    break;
+                case "/":
+                    total = numValue1 / numValue2;
+                    break;
+                case "%":
+                    total = numValue1 % numValue2;
+                    break;
             }
-            else if(operator == opValues[1]){
-                total = numValue1 - numValue2;
-                screen.innerText = total;
+            if (power === "power"){
+                total = Math.pow(numValue1, numValue2);
             }
-            else if(operator == opValues[2]){
-                total = numValue1 * numValue2;
-                screen.innerText = total;
-            }
-            else if(operator == opValues[3]){
-                total = numValue1 / numValue2;
-                screen.innerText = total;
-            }
-            else if(operator == opValues[4]){
-                total = numValue1 % numValue2;
-                screen.innerText = total;
-            }
+            screen.innerText = total;
         }
-        if(clicked && btnAutres[0]){
-            const delValue = total.split("");
-            delValue.pop();
-            total = delValue.join("");
+        else if (value === "DELETE") {
+            total = total.slice(0, -1);
             screen.innerText = total;
         }
     })
-}
-console.log(num1)
+});
+
+console.log(document.querySelectorAll("#delNenter"));
 
 // clear (erasing the sum)
 const clearBtn = document.createElement("button")
@@ -159,25 +308,13 @@ clear.appendChild(clearBtn)
 clearBtn.className = "clear";
 clearBtn.innerText = "A/C";
 
-// methods (Math functions)
-let methodValues = ["abs", "pow", "round", "ceil", "floor", "sqrt"];
-
-for (let i = 0; i < methodValues.length; i++) {
-    const methodBtn = document.createElement("button");
-    methods.appendChild(methodBtn);
-    methodBtn.id = "methods";
-    methodBtn.className = `${methodValues[i]}`;
-    methodBtn.innerText = `${methodValues[i]}`;
-}
-
-// assignment operators (calculating the sum in an instant manner)
-
-let assignValues = ["+=", "-=", "*=", "/=", "%="];
-
-for (let i = 0; i < assignValues.length; i++) {
-    const assignBtn = document.createElement("button");
-    assignments.appendChild(assignBtn);
-    assignBtn.id = "assignments";
-    assignBtn.className = `${assignValues[i]}`;
-    assignBtn.innerText = `${assignValues[i]}`;
-}
+clearBtn.addEventListener("click", (event) => {
+    event.target.screen;
+    num1 = "";
+    num2 = "";
+    total = "";
+    power = "";
+    if (clicked) {
+        screen.innerText = "0";
+    }
+})
