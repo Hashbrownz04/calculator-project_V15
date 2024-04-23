@@ -48,7 +48,7 @@ for (let i = 0; i < numButtons.length; i++) {
 /* Now, I meant to create the other button elements in a way of how I've done them before
 -- a block of code where I assign values to elements, and another where I add their functions --
 But my teacher taught me about a function method called .forEach
-where I can assign each value to an element and make a event-listener function of that element
+where I can assign each value to an element and make an event-listener function of that element
 in one sitting.
 */
 let miscValues = ["+/-", "."]
@@ -203,35 +203,38 @@ assignValues.forEach(value => {
         num1 = total;
         total = "";
         screen.innerText = "0";
+        //Please take the 5 seconds you have to enter another number value.
         const timer = setInterval(myTotal, 4500);
         function myTotal() {
             let numValue1 = parseFloat(num1);
             let numTotal = parseFloat(total);
             switch(value){
                 case "+=":
-                    total = numTotal+=numValue1;
+                    total = numValue1 += numTotal;
                     screen.innerText = total;
                     clearInterval(timer);
                     break;
                 case "-=":
-                    total = numTotal-=numValue1;
+                    total = numValue1 -= numTotal;
                     screen.innerText = total;
                     clearInterval(timer);
                     break;
                 case "*=":
-                    total = numTotal*=numValue1;
+                    total = numValue1 *= numTotal;
                     screen.innerText = total;
                     clearInterval(timer);
                     break;
                 case "/=":
-                    total = numTotal/=numValue1;
+                    total = numValue1 /= numTotal;
                     screen.innerText = total;
                     clearInterval(timer);
                     break;
                 case "%=":
-                    total = numTotal%=numValue1;
+                    total = numValue1 %= numTotal;
                     screen.innerText = total;
                     clearInterval(timer);
+                    break;
+                default:
                     break;
             }
         }
@@ -277,7 +280,7 @@ delNenter.forEach(value => {
         event.target.screen;
         /*We have the first number value, now we have the second number value.
         Now we can make the sum!*/
-        
+
         /*When we check on the operator variable with its assigned value,
         this will correspond to how we want to make the sum.
         Do we add, multiply, subtract, divide? We want to know what!*/
@@ -323,6 +326,7 @@ clear.appendChild(clearBtn)
 clearBtn.className = "clear";
 clearBtn.innerText = "A/C";
 
+//This will reset everything back to where it was.
 clearBtn.addEventListener("click", (event) => {
     event.target.screen;
     num1 = "";
